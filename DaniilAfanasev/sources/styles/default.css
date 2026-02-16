@@ -1,0 +1,13 @@
+/* 
+  Color scheme is based on Payza color palette
+  https://www.color-hex.com/color-palette/4994
+*/
+
+body{
+  background-color: #eceff1;
+}
+
+/* Links */
+a{
+  color: #005386;
+}
