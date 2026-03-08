@@ -1,0 +1,103 @@
+*{
+	scroll-behavior: smooth;
+}
+
+html{
+    background-color: #eceff1;
+}
+
+img{
+    max-width: 300px;
+    max-height: 300px;
+    /* Стандартное разрешение обложки CD - 3000x3000, поэтому создаём миниатуюру сокращая размер в 10 раз */
+}
+
+.centering{
+    text-align: center;
+}
+
+.wrapper{
+    display: flex;
+    justify-content: center;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    padding-top: 3rem;
+}
+
+.accordion-item{
+    cursor: pointer;
+}
+
+.item_top{
+    display: flex;
+    justify-content: space-between;
+    column-gap: 3rem; /* Делаем одинаковое расстояние между правой и левой частью */
+    margin-bottom: 1.5rem;
+}
+
+.item_icon{
+    display: flex;
+    align-self: center;
+    align-items: center;
+}
+
+.plus-icon{
+    transition: transform 0.3s ease;
+}
+
+/*
+    Используя параметр transition, мы можем плавно изменят ьпрозрачность и появление изображения
+    В моём случаи я установил параметры на 0.5 секунды.
+*/ 
+.box {
+    /* Изначально скрываем наш элемент задавая ему прозрачность 0 и высоту 0*/
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 1s ease, max-height 1s ease;
+    grid-template-rows: 0fr; /* Избавляемся от "дёрганной" анимации*/
+}
+.accordion-item:hover .box {
+    opacity: 1;
+    max-height: 300px;
+    margin-top: 1rem;
+}
+input[type="radio"]:checked + .accordion-item .box {
+    opacity: 1; /* Прозрачность */
+    max-height: 300px;
+    margin-top: 1rem;
+}
+input{
+    display: none;
+}
+
+/*      
+Старый вариант, его минус в том что он не создаёт плавный переход, а просто показывает скрытый элемент.
+
+input[type="radio"]:not(:checked) + .accordion-item .box{
+    display: none;
+}
+*/
+
+.accordion-item:hover .box {
+    /* Используем тег important для перезаписи более приоритетного параметра display:none */
+    display: block !important; 
+    transition: transform 1s ease;  
+}
+
+/* Косметические дополнения и анимации */
+.accordion-item:hover{
+    color:rgb(0, 128, 124);
+}
+input[type="radio"]:checked + label {
+    color: green;
+}
+.accordion-item .plus-icon:hover {
+    transform: rotate(45deg);
+}
+input[type="radio"]:checked + .accordion-item .plus-icon {
+    transform: rotate(45deg);
+}
